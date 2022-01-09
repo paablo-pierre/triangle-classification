@@ -17,7 +17,7 @@ import java.io.Serializable;
 @ToString
 public class TriangleRequestDTO implements Serializable {
     private static final long serialVersionUID = -5585752831418450947L;
-    
+
     private Long sideA;
     private Long sideB;
     private Long sideC;
