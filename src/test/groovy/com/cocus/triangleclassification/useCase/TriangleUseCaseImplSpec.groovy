@@ -1,4 +1,4 @@
-package useCase
+package com.cocus.triangleclassification.useCase
 
 import com.cocus.triangleclassification.domain.Triangle
 import com.cocus.triangleclassification.domain.dto.TriangleRequestDTO
@@ -6,8 +6,7 @@ import com.cocus.triangleclassification.domain.dto.TriangleTypeEnum
 import com.cocus.triangleclassification.exception.ServiceException
 import com.cocus.triangleclassification.interfaces.usecase.TriangleUseCase
 import com.cocus.triangleclassification.interfaces.repository.TriangleRepository
-import com.cocus.triangleclassification.useCase.TriangleUseCaseImpl
-import fixture.TriangleRepositoryTemplate
+import com.cocus.triangleclassification.fixture.TriangleRepositoryTemplate
 import spock.lang.Specification
 
 class TriangleUseCaseImplSpec extends Specification {

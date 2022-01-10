@@ -1,4 +1,4 @@
-package fixture
+package com.cocus.triangleclassification.fixture
 
 import com.cocus.triangleclassification.domain.Triangle
 import com.cocus.triangleclassification.domain.builder.GenericBuilder
