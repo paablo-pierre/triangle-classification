@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingRequestHeaderException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -30,19 +31,24 @@ public class TriangleClassificationExceptionHandler {
                 HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(value = MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorResponseDTO> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
+        return buildErrorResponse(String.valueOf(HttpStatus.BAD_REQUEST.value()),
+                ex.getMessage(),
+                HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(MissingRequestHeaderException.class)
-    public ResponseEntity<ErrorResponseDTO> handleMissingHeader() {
+    public ResponseEntity<ErrorResponseDTO> handleMissingHeader(MissingRequestHeaderException ex) {
         return buildErrorResponse(String.valueOf(HttpStatus.UNAUTHORIZED.value()),
-                HttpStatus.UNAUTHORIZED.getReasonPhrase(),
-                HttpStatus.UNAUTHORIZED);
+                ex.getMessage(), HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-    public ResponseEntity<ErrorResponseDTO> handleMethodNotAllowed() {
+    public ResponseEntity<ErrorResponseDTO> handleMethodNotAllowed(HttpRequestMethodNotSupportedException ex) {
         return buildErrorResponse(
                 String.valueOf(HttpStatus.METHOD_NOT_ALLOWED.value()),
-                HttpStatus.METHOD_NOT_ALLOWED.getReasonPhrase(),
-                HttpStatus.METHOD_NOT_ALLOWED);
+                ex.getMessage(), HttpStatus.METHOD_NOT_ALLOWED);
     }
 
     @ExceptionHandler(HttpMediaTypeNotAcceptableException.class)

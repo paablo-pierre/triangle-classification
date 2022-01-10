@@ -2,8 +2,10 @@ server:
   port: 8090
 
 spring:
-  profiles:
-    active: local
+  security:
+    user:
+      name: admin
+      password: cm9sZV91c2Vy
 
   jpa:
     hibernate:
@@ -18,4 +20,4 @@ spring:
         temp:
           use_jdbc_metadata_defaults: false
 
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    database-platform: org.hibernate.dialect.MySQL8Dialect

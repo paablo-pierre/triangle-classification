@@ -27,13 +27,14 @@ public class TriangleUseCaseImpl implements TriangleUseCase {
         log.info("Start to execute TriangleUseCaseImpl.execute() with params {}", triangleRequestDTO);
 
         if(isNotTriangle(triangleRequestDTO) || validateSize(triangleRequestDTO)) {
-            log.info("The informations doesnt match a triangle");
+            log.error("The information doesnt match a triangle");
             throw new ServiceException(String.valueOf(HttpStatus.BAD_REQUEST.value()), "The informations doesnt match a triangle");
         }
 
         var triangle = validateTriangle(triangleRequestDTO);
 
         if(Objects.isNull(triangle)) {
+            log.error("Cant possible to validate if is triangle");
             throw new ServiceException(String.valueOf(HttpStatus.BAD_REQUEST.value()), "Does not possible validate if is a triangle");
         }
 

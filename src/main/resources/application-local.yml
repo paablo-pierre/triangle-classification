@@ -1,5 +1,5 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost/triangle
-    username: postgres
+    url: jdbc:mysql://localhost/triangle-db
+    username: root
     password: asdqwe123

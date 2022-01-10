@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+import javax.validation.Valid;
+
+    @RestController
 @RequestMapping("/api/v1/triangle")
 @RequiredArgsConstructor
 public class TriangleController {
@@ -45,7 +47,7 @@ public class TriangleController {
             @ApiResponse(code = 404, message = "URL not found"),
     })
     @PostMapping
-    public ResponseEntity<TriangleResponseDTO> saveTriangle(@RequestBody TriangleRequestDTO triangleRequestDTO) {
+    public ResponseEntity<TriangleResponseDTO> saveTriangle(@RequestBody @Valid TriangleRequestDTO triangleRequestDTO) {
         var triangle = triangleUseCase.execute(triangleRequestDTO);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(triangle);
