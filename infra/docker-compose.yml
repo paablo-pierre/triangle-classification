@@ -9,3 +9,15 @@ services:
       - MYSQL_DATABASE=triangle
     ports:
       - "3306:3306"
+
+  triangle-classification:
+    image: 'triangle-classification:latest'
+    environment:
+      - ENV=local
+    build:
+      context: .
+    container_name: triangle-classification
+    ports:
+      - "8090:8090"
+    depends_on:
+      - triangle-mysql

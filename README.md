@@ -3,8 +3,6 @@
 <br>
 
 ## 💻 Project
-
-Este desafio é um crud para um agendamento de exames pelo paciente.
 This challenge is a crud to determine if a triangle is equilateral, isosceles or scalene.
 
 ## Technologies:
@@ -17,8 +15,8 @@ This challenge is a crud to determine if a triangle is equilateral, isosceles or
 - Spring Security.
 
 ## :wrench:    Initial Configuration
-Configuração no arquivo docker-compose.yml <p>
-Acesse o diretório infra e execute o arquivo com o comando docker-compose up -d
+Configure docker-compose.yml file in /infra <p>
+Access the path /infra and execute the Dockerfile with docker-compose up -d
 
 ## :hammer: Instalação
 1 - You need to install maven on your desktop
@@ -26,27 +24,41 @@ Acesse o diretório infra e execute o arquivo com o comando docker-compose up -d
 Root project execute:
 ```  
 mvn clean test
-mvn package -DskipTests  
-```  
+mvn package  
+```
 
-Na raiz do projeto faça o build da imagem docker da aplicação:
+After to do the last step, build the docker image:
 ```
-docker build -t sample-schedule .
+docker build -t triangle-classification .
 ```
-Com a imagem acima gerada é possível subir o docker-compose com uma instância do banco de dados PostgreSQL <p>
-Na raiz do projeto execute o seguinte comando:
+How to execute with database on AWS:
+```
+After to build the application execute: docker run --env ENV=aws
+```
+And the application will start using AWS database.
+
+With this image generated it's possible to start the application with MySQL database instance together <p>
+On root project execute:
 ```
 cd infra
 docker-compose up
 ```
 
-A aplicação será executada na porta 8090.
+The application will start on port 8090.
 
-Ao executar a aplicação será executado um script para popular a base de dados através do flyway.
+If you want to run without docker do only this:
+```
+mvn spring-boot:run -Dspring-boot.run.profiles=aws 
+```
 
-## Como executar requests
+If you want to see the endpoints descriptions only do this after starts application:
+```
+localhost:8090/swagger-ui.html
+```
 
-A aplicação possui dois endpoints, um para listar os agendamentos já feitos e outro para criar um agendamento:
+## How execute request
+
+The application has two endpoints one to list all triangles saved on database, and the second to save them. 
 ````
-É possível utilizar a collection no postman contida em src/config e importá-la no postman.
+It's possible to use the postman collection on src/config and import on postman.
 ````
